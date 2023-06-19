@@ -1,0 +1,11 @@
+sudo apt update && sudo apt upgrade -y
+⠀Установить необходимые пакеты
+sudo apt install wget jq git build-essential pkg-config libssl-dev -y
+⠀Скачать и распаковать бинарные файлы
+massa_version=`wget -qO- https://api.github.com/repos/massalabs/massa/releases/latest | jq -r ".tag_name"`; \
+wget -qO $HOME/massa.tar.gz "https://github.com/massalabs/massa/releases/download/${massa_version}/massa_${massa_version}_release_linux.tar.gz"; \
+tar -xvf $HOME/massa.tar.gz; \
+rm -rf $HOME/massa.tar.gz
+⠀Сделать бинарные файлы исполняемыми
+chmod +x $HOME/massa/massa-node/massa-node \
+$HOME/massa/massa-client/massa-client
